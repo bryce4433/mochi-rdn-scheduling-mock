@@ -3,31 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Select a provider — RDN</title>
+    <title>Select a provider — RDN (with PRD updates)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      :root {
+        --color-text-default: #000045;
+        --color-text-brand-secondary: #3b3b8d;
+        --color-text-inverse: #ffffff;
+        --color-background-default: #ffffff;
+        --color-background-hovered: #0000450d;
+        --color-background-accent3-100: #ecf3f8;
+        --color-background-accent3-200: #d5e2fb;
+        --color-background-accent3-500: #448fff;
+        --color-border-default: #000045;
+        --color-border-subtle: #00004533;
+        --color-border-subtler: #3b3b8d26;
+        --color-extended-success-100: #dcfae6;
+        --color-extended-success-600: #079455;
+        --color-extended-warning-100: #fef0c7;
+        --color-extended-warning-600: #dc6803;
+        --color-primary: var(--color-text-default);
+      }
       body {
         font-family:
           -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           'Helvetica Neue', sans-serif;
-        color: #0a1c4f;
+        color: var(--color-text-default);
       }
       .text-navy {
-        color: #0a1c4f;
+        color: var(--color-text-default);
       }
       .text-navy-muted {
-        color: #5b6788;
+        color: var(--color-text-brand-secondary);
       }
       .border-soft {
-        border-color: #e5e7eb;
+        border-color: var(--color-border-subtler);
       }
       .card {
-        background: white;
-        border: 1px solid #e5e7eb;
+        background: var(--color-background-default);
+        border: 1px solid var(--color-border-subtler);
         border-radius: 16px;
       }
       .pill {
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--color-border-subtler);
         border-radius: 999px;
         padding: 8px 16px;
         font-size: 14px;
@@ -36,29 +54,34 @@
         align-items: center;
         gap: 8px;
         cursor: pointer;
-        color: #0a1c4f;
+        color: var(--color-text-default);
       }
       .pill:hover {
-        border-color: #0a1c4f;
+        border-color: var(--color-border-default);
       }
       .slot-pill {
-        border: 1px solid #e5e7eb;
+        border: 1px solid var(--color-border-subtler);
         border-radius: 8px;
         padding: 8px 12px;
         font-size: 13px;
         background: white;
         cursor: pointer;
         font-weight: 500;
-        color: #0a1c4f;
+        color: var(--color-text-default);
       }
       .slot-pill:hover {
-        border-color: #0a1c4f;
-        background: #f9fafb;
+        border-color: var(--color-border-default);
+        background: var(--color-background-hovered);
       }
       .slot-pill.selected {
-        background: #0a1c4f;
+        background: var(--color-text-default);
         color: white;
-        border-color: #0a1c4f;
+        border-color: var(--color-text-default);
+      }
+      .slot-pill.disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        pointer-events: none;
       }
       .day-tab {
         text-align: center;
@@ -66,20 +89,129 @@
         border-radius: 12px;
         font-size: 13px;
         cursor: pointer;
+        border: 1px solid transparent;
       }
       .day-tab:hover {
-        background: #f3f4f6;
+        background: var(--color-background-hovered);
       }
       .day-tab.active {
-        background: #f1f5f9;
+        background: var(--color-background-accent3-100);
+        border-color: var(--color-background-accent3-200);
         font-weight: 600;
       }
+      .day-tab.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .day-tab.disabled .lock {
+        display: block;
+      }
+      .day-tab .lock {
+        display: none;
+      }
+
+      /* Callout — matches DS Callout component */
+      .callout {
+        display: flex;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .callout-line {
+        width: 4px;
+        border-radius: 999px;
+        flex-shrink: 0;
+        align-self: stretch;
+        background: var(--color-primary);
+      }
+      .callout-line.success {
+        background: var(--color-extended-success-600);
+      }
+      .callout-line.warning {
+        background: var(--color-extended-warning-600);
+      }
+
+      /* Primary btn — matches DS Button variant=primary */
+      .btn-primary {
+        background: var(--color-text-default);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid var(--color-text-default);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        background: #0e0e5e;
+      }
+      .btn-secondary {
+        background: white;
+        color: var(--color-text-default);
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid var(--color-text-default);
+        cursor: pointer;
+      }
+      .btn-secondary:hover {
+        background: var(--color-background-hovered);
+      }
+
+      /* Plan toggle */
+      .plan-toggle {
+        display: inline-flex;
+        background: var(--color-background-accent3-100);
+        border-radius: 999px;
+        padding: 4px;
+        border: 1px solid var(--color-border-subtler);
+      }
+      .plan-toggle button {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 500;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: var(--color-text-default);
+      }
+      .plan-toggle button.active {
+        background: white;
+        box-shadow: 0 1px 2px rgba(0, 0, 69, 0.1);
+      }
+
       .star {
-        color: #0a1c4f;
+        color: var(--color-text-default);
+      }
+
+      /* Hide things based on plan tier — toggled via body class */
+      body.plan-wellness .show-cash {
+        display: none !important;
+      }
+      body.plan-cash .show-wp {
+        display: none !important;
       }
     </style>
   </head>
-  <body class="bg-gray-50 min-h-screen">
+  <body class="plan-cash bg-gray-50 min-h-screen">
+    <!-- Mock-only plan toggle (NOT in production) -->
+    <div
+      class="bg-yellow-50 border-b border-yellow-200 px-6 py-2 flex items-center justify-between text-xs"
+    >
+      <span class="text-yellow-900 font-medium">
+        🔧 MOCK · toggle plan tier to compare views
+      </span>
+      <div class="plan-toggle" role="tablist">
+        <button class="active" onclick="setPlan('cash')">Cash pay</button>
+        <button onclick="setPlan('wellness')">Wellness Plus</button>
+      </div>
+    </div>
+
     <!-- Top bar -->
     <header
       class="bg-white border-b border-soft px-8 py-5 grid grid-cols-3 items-center"
@@ -109,7 +241,6 @@
         <div class="card p-6">
           <!-- Provider row -->
           <div class="flex gap-5 items-start">
-            <!-- Logo placeholder -->
             <div
               class="w-20 h-20 rounded-2xl bg-sky-50 flex items-center justify-center shrink-0"
             >
@@ -149,18 +280,58 @@
           <!-- Divider -->
           <div class="border-t border-soft my-5"></div>
 
+          <!-- Cash-pay only: upgrade callout above availability -->
+          <div class="callout show-cash mb-5">
+            <div class="callout-line"></div>
+            <div class="flex-1">
+              <div class="font-semibold text-navy text-sm">
+                Want to book further out?
+              </div>
+              <p class="text-navy-muted text-sm mt-1 mb-3 leading-relaxed">
+                Cash pay visits can be booked up to 3 days out. Add insurance
+                and upgrade to Wellness Plus to unlock the full schedule.
+              </p>
+              <button class="btn-primary">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Upgrade to Wellness Plus
+              </button>
+            </div>
+          </div>
+
+          <!-- Wellness Plus only: reinforcement callout -->
+          <div class="callout show-wp mb-5">
+            <div class="callout-line success"></div>
+            <div class="flex-1">
+              <p class="text-navy text-sm leading-relaxed">
+                You're seeing full provider calendar access, thanks to your
+                <strong>Wellness Plus</strong> membership.
+              </p>
+            </div>
+          </div>
+
           <!-- Next available -->
           <div class="flex items-center justify-between mb-3">
             <span class="text-sm font-medium text-navy">Next available</span>
             <span class="text-xs text-navy-muted">Pacific Time</span>
           </div>
 
-          <!-- Day strip -->
+          <!-- Day strip — past 3 days greyed for cash pay -->
           <div class="grid grid-cols-5 gap-2 mb-4">
             <div class="day-tab active">
               <div class="text-xs text-navy-muted">Wed</div>
               <div class="text-navy font-semibold">May 20</div>
-              <div class="text-xs text-navy-muted mt-0.5">4 appts</div>
+              <div class="text-xs text-navy-muted mt-0.5">3 appts</div>
+              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
             <div class="day-tab">
               <div class="text-xs text-navy-muted">Thu</div>
@@ -172,30 +343,34 @@
               <div class="text-navy font-semibold">May 22</div>
               <div class="text-xs text-navy-muted mt-0.5">3 appts</div>
             </div>
-            <div class="day-tab">
+            <!-- Days beyond 3-day window: disabled in cash pay only -->
+            <div class="day-tab" data-beyond-window>
               <div class="text-xs text-navy-muted">Sat</div>
               <div class="text-navy font-semibold">May 23</div>
               <div class="text-xs text-navy-muted mt-0.5">2 appts</div>
+              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
-            <div class="day-tab">
+            <div class="day-tab" data-beyond-window>
               <div class="text-xs text-navy-muted">Mon</div>
               <div class="text-navy font-semibold">May 25</div>
               <div class="text-xs text-navy-muted mt-0.5">5 appts</div>
+              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
           </div>
 
-          <!-- Slots for selected day -->
+          <!-- Slots for selected day — earliest 12hr filtered -->
           <div class="grid grid-cols-4 gap-2">
-            <button class="slot-pill">9:00 AM</button>
+            <!-- 9 AM removed (mock: assume <12hr from "now") show-cash only marker -->
             <button class="slot-pill selected">10:30 AM</button>
             <button class="slot-pill">1:00 PM</button>
             <button class="slot-pill">3:30 PM</button>
           </div>
+          <p class="text-xs text-navy-muted mt-3">
+            Earliest bookings start 12 hours from now.
+          </p>
 
           <!-- Primary CTA -->
-          <button
-            class="w-full mt-5 py-3 rounded-full bg-[#0a1c4f] text-white font-medium text-sm hover:bg-[#0e2766]"
-          >
+          <button class="btn-primary w-full mt-5 justify-center">
             Book with Bobo Nutrition
           </button>
         </div>
@@ -209,17 +384,12 @@
         <p class="text-navy-muted mb-5">Find the right provider for you</p>
 
         <!-- Filters -->
-        <div class="flex gap-2 mb-6">
-          <button
-            class="pill !p-2.5"
-            aria-label="Filters"
-            title="Filters"
-          >
-            <!-- filter icon -->
+        <div class="flex gap-2 mb-6 items-center">
+          <button class="pill !p-2.5" aria-label="Filters" title="Filters">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path
                 d="M6 12h12M3 6h18M9 18h6"
-                stroke="#0a1c4f"
+                stroke="currentColor"
                 stroke-width="2"
                 stroke-linecap="round"
               />
@@ -229,11 +399,19 @@
             Date range
             <span class="text-xs">▾</span>
           </button>
+
+          <!-- Cash pay: small inline reminder of window limit -->
+          <span class="show-cash ml-auto text-xs text-navy-muted">
+            Showing next 3 days · cash pay
+          </span>
+          <span class="show-wp ml-auto text-xs text-navy-muted">
+            Showing next 30 days · Wellness Plus
+          </span>
         </div>
 
         <!-- Provider list -->
         <div class="space-y-4">
-          <!-- Provider card 1 -->
+          <!-- Provider 1 — Maya Rodriguez (slots within 3-day window) -->
           <article class="card p-5">
             <div class="flex gap-4 items-start">
               <div
@@ -267,11 +445,16 @@
               <button class="slot-pill">Today 4:00 PM</button>
               <button class="slot-pill">Today 5:30 PM</button>
               <button class="slot-pill">Tue 9:00 AM</button>
-              <button class="slot-pill text-navy-muted">+12 more</button>
+              <button class="slot-pill text-navy-muted show-cash">
+                +5 more
+              </button>
+              <button class="slot-pill text-navy-muted show-wp">
+                +12 more
+              </button>
             </div>
           </article>
 
-          <!-- Provider card 2 -->
+          <!-- Provider 2 — James Tanaka (slot at Thu = within window) -->
           <article class="card p-5">
             <div class="flex gap-4 items-start">
               <div
@@ -305,11 +488,16 @@
               <button class="slot-pill">Thu 8:00 AM</button>
               <button class="slot-pill">Thu 11:30 AM</button>
               <button class="slot-pill">Fri 2:00 PM</button>
-              <button class="slot-pill text-navy-muted">+8 more</button>
+              <button class="slot-pill text-navy-muted show-cash">
+                +1 more
+              </button>
+              <button class="slot-pill text-navy-muted show-wp">
+                +8 more
+              </button>
             </div>
           </article>
 
-          <!-- Provider card 3 -->
+          <!-- Provider 3 — Priya Anand (within window) -->
           <article class="card p-5">
             <div class="flex gap-4 items-start">
               <div
@@ -343,12 +531,65 @@
               <button class="slot-pill">Tomorrow 7:30 AM</button>
               <button class="slot-pill">Tomorrow 12:00 PM</button>
               <button class="slot-pill">Tomorrow 6:00 PM</button>
-              <button class="slot-pill text-navy-muted">+15 more</button>
+              <button class="slot-pill text-navy-muted show-cash">
+                +3 more
+              </button>
+              <button class="slot-pill text-navy-muted show-wp">
+                +15 more
+              </button>
             </div>
           </article>
 
-          <!-- Provider card 4 -->
-          <article class="card p-5">
+          <!-- Provider 4 — David Whitman (Sat = OUTSIDE 3-day window) -->
+          <!-- For cash pay: hidden entirely OR shown with locked state.
+                We show as a special "locked" preview card to surface the upgrade
+                value: "this provider has slots — upgrade to see them" -->
+          <article class="card p-5 show-cash relative overflow-hidden">
+            <div class="flex gap-4 items-start">
+              <div
+                class="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-200 to-indigo-400 flex items-center justify-center text-indigo-900 font-semibold shrink-0 opacity-60"
+              >
+                DW
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-2">
+                  <div class="font-semibold text-navy">David Whitman, RDN</div>
+                  <span
+                    class="text-xs bg-gray-100 text-navy-muted px-2 py-0.5 rounded-full shrink-0 inline-flex items-center gap-1"
+                  >
+                    🔒 Sat (beyond 3-day window)
+                  </span>
+                </div>
+                <div class="text-navy-muted text-sm mt-0.5">
+                  Registered Dietitian Nutritionist
+                </div>
+                <div
+                  class="flex items-center gap-1.5 mt-1.5 text-sm text-navy-muted"
+                >
+                  <span class="star">★</span>
+                  <span class="font-medium text-navy">4.6</span>
+                  <span>· 97 ratings</span>
+                  <span>·</span>
+                  <span>EN</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mt-4 p-3 rounded-lg bg-gray-50 border border-soft text-sm text-navy-muted flex items-center justify-between gap-4"
+            >
+              <span>
+                3 slots available Saturday and beyond — unlock with Wellness
+                Plus.
+              </span>
+              <button class="btn-secondary !py-1.5 !text-xs whitespace-nowrap">
+                Upgrade
+              </button>
+            </div>
+          </article>
+
+          <!-- Wellness Plus view: shows David with normal slots -->
+          <article class="card p-5 show-wp">
             <div class="flex gap-4 items-start">
               <div
                 class="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-200 to-indigo-400 flex items-center justify-center text-indigo-900 font-semibold shrink-0"
@@ -387,12 +628,29 @@
         </div>
 
         <!-- Load more -->
-        <button
-          class="w-full mt-6 py-3 rounded-full border border-soft text-navy font-medium text-sm hover:bg-gray-50"
-        >
-          Load more providers
-        </button>
+        <button class="w-full mt-6 btn-secondary">Load more providers</button>
       </section>
     </div>
+
+    <script>
+      function setPlan(plan) {
+        document.body.classList.remove('plan-cash', 'plan-wellness')
+        document.body.classList.add('plan-' + plan)
+        document.querySelectorAll('.plan-toggle button').forEach((b, i) => {
+          b.classList.toggle(
+            'active',
+            (plan === 'cash' && i === 0) || (plan === 'wellness' && i === 1)
+          )
+        })
+        // Day-strip lock state toggling
+        document.querySelectorAll('[data-beyond-window]').forEach(el => {
+          el.classList.toggle('disabled', plan === 'cash')
+        })
+      }
+      // Init day-strip lock state for default (cash)
+      document.querySelectorAll('[data-beyond-window]').forEach(el => {
+        el.classList.add('disabled')
+      })
+    </script>
   </body>
 </html>
