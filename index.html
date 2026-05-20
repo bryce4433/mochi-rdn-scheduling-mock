@@ -23,6 +23,9 @@
         --color-extended-warning-100: #fef0c7;
         --color-extended-warning-600: #dc6803;
         --color-primary: var(--color-text-default);
+        --color-wellness-plus: #5828d3;
+        --color-wellness-plus-hovered: #766cff;
+        --color-wellness-plus-pressed: #4718bf;
       }
       body {
         font-family:
@@ -147,6 +150,27 @@
       }
       .btn-primary:hover {
         background: #0e0e5e;
+      }
+      .btn-wellness-plus {
+        background: var(--color-wellness-plus);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid var(--color-wellness-plus);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-wellness-plus:hover {
+        background: var(--color-wellness-plus-hovered);
+        border-color: var(--color-wellness-plus-hovered);
+      }
+      .btn-wellness-plus:active {
+        background: var(--color-wellness-plus-pressed);
+        border-color: var(--color-wellness-plus-pressed);
       }
       .btn-secondary {
         background: white;
@@ -360,23 +384,27 @@
           "
         >
           <div class="p-6">
-            <!-- Eyebrow + icon row -->
-            <div class="flex items-center gap-2 mb-4">
-              <div
-                class="w-8 h-8 rounded-full bg-white border border-soft flex items-center justify-center"
+            <!-- Eyebrow + canonical Mochi Wellness Plus monogram -->
+            <div class="flex items-center gap-3 mb-4">
+              <!-- MochiWellnessplusFill — copied verbatim from
+                   packages/ds/src/assets/logos/MochiWellnessplusFill.tsx -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="shrink-0"
               >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  class="text-navy"
-                >
-                  <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z" />
-                </svg>
-              </div>
+                <path
+                  fill="#5828D3"
+                  d="M0 9.6c0-3.36 0-5.04.654-6.324A6 6 0 0 1 3.276.654C4.56 0 6.24 0 9.6 0h4.8c3.36 0 5.04 0 6.324.654a6 6 0 0 1 2.622 2.622C24 4.56 24 6.24 24 9.6v4.8c0 3.36 0 5.04-.654 6.324a6 6 0 0 1-2.622 2.622C19.44 24 17.76 24 14.4 24H9.6c-3.36 0-5.04 0-6.324-.654a6 6 0 0 1-2.622-2.622C0 19.44 0 17.76 0 14.4z"
+                />
+                <path
+                  fill="#fff"
+                  d="M12.012 8.91c.244-.42.567-.725.981-.926a2.7 2.7 0 0 1 .886-.248c.555-.059 1.097-.003 1.613.227.889.396 1.418 1.103 1.655 2.058.081.325.109.657.11.992q.003 2.146-.003 4.293c0 .147-.025.304-.077.44a.834.834 0 0 1-.955.519.88.88 0 0 1-.689-.871c-.002-1.487.003-2.974-.005-4.46a2.4 2.4 0 0 0-.097-.656c-.182-.617-.716-.958-1.338-.912-.661.049-1.095.5-1.194 1.207q-.025.194-.024.391-.002 2.181-.001 4.362c0 .29-.085.543-.303.734-.274.242-.588.292-.914.138-.329-.154-.505-.434-.506-.81-.004-1.473.002-2.947-.006-4.42a2.6 2.6 0 0 0-.085-.639c-.145-.55-.563-.918-1.151-.962a1.26 1.26 0 0 0-1.325.867c-.082.23-.112.469-.112.713v4.411c0 .451-.268.806-.676.903-.526.124-1.045-.294-1.046-.85-.003-1.53-.016-3.059.005-4.588.013-.97.339-1.82 1.09-2.451.47-.397 1.02-.597 1.625-.645.402-.031.798 0 1.186.117q.798.24 1.271.944z"
+                />
+              </svg>
               <span
                 class="text-[11px] font-semibold tracking-wider uppercase text-navy-muted"
               >
@@ -393,8 +421,8 @@
               upgrade to Wellness Plus to unlock the full schedule.
             </p>
 
-            <!-- CTA -->
-            <button class="btn-primary w-full mt-5 justify-center">
+            <!-- CTA — uses canonical bg-wellness-plus purple -->
+            <button class="btn-wellness-plus w-full mt-5 justify-center">
               Upgrade to Wellness Plus
               <span class="ml-1">→</span>
             </button>
