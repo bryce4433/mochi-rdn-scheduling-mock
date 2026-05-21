@@ -107,12 +107,6 @@
         cursor: not-allowed;
         pointer-events: none;
       }
-      .day-tab.disabled .lock {
-        display: block;
-      }
-      .day-tab .lock {
-        display: none;
-      }
 
       /* Callout — matches DS Callout component */
       .callout {
@@ -371,7 +365,6 @@
               <div class="text-xs text-navy-muted">Wed</div>
               <div class="text-navy font-semibold">May 20</div>
               <div class="text-xs text-navy-muted mt-0.5">3 appts</div>
-              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
             <div class="day-tab">
               <div class="text-xs text-navy-muted">Thu</div>
@@ -388,13 +381,11 @@
               <div class="text-xs text-navy-muted">Sat</div>
               <div class="text-navy font-semibold">May 23</div>
               <div class="text-xs text-navy-muted mt-0.5">2 appts</div>
-              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
             <div class="day-tab" data-beyond-window>
               <div class="text-xs text-navy-muted">Mon</div>
               <div class="text-navy font-semibold">May 25</div>
               <div class="text-xs text-navy-muted mt-0.5">5 appts</div>
-              <span class="lock text-[10px] text-navy-muted mt-0.5">🔒</span>
             </div>
           </div>
 
@@ -673,7 +664,7 @@
                   <span
                     class="text-xs bg-gray-100 text-navy-muted px-2 py-0.5 rounded-full shrink-0 inline-flex items-center gap-1"
                   >
-                    🔒 Sat (beyond 3-day window)
+                    Sat (beyond 3-day window)
                   </span>
                 </div>
                 <div class="text-navy-muted text-sm mt-0.5">
