@@ -622,8 +622,53 @@
             </div>
           </article>
 
-          <!-- Provider 2 — James Tanaka (slot at Thu = within window) -->
-          <article class="card p-5">
+          <!-- Provider 2 — James Tanaka -->
+          <!-- Cash pay: earliest slot is Sun, outside 72hr window → greyed -->
+          <article class="card p-5 show-cash relative overflow-hidden">
+            <div style="opacity: 0.55">
+              <div class="flex gap-4 items-start">
+                <div
+                  class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center text-amber-900 font-semibold shrink-0"
+                >
+                  JT
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-2">
+                    <div class="font-semibold text-navy">James Tanaka, RDN</div>
+                    <span class="text-xs text-navy-muted shrink-0">
+                      Next: Sun
+                    </span>
+                  </div>
+                  <div class="text-navy-muted text-sm mt-0.5">
+                    Registered Dietitian Nutritionist
+                  </div>
+                  <div
+                    class="flex items-center gap-1.5 mt-1.5 text-sm text-navy-muted"
+                  >
+                    <span class="star">★</span>
+                    <span class="font-medium text-navy">4.7</span>
+                    <span>· 184 ratings</span>
+                    <span>·</span>
+                    <span>EN</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brief status / upgrade nudge -->
+            <p
+              class="mt-4 pt-3 border-t border-soft text-xs text-navy-muted leading-relaxed"
+            >
+              No availability in the next 72 hours.
+              <a href="#" class="underline font-medium text-navy">
+                Upgrade to Wellness Plus
+              </a>
+              for full scheduling access.
+            </p>
+          </article>
+
+          <!-- Wellness Plus view: shows James with normal slots -->
+          <article class="card p-5 show-wp">
             <div class="flex gap-4 items-start">
               <div
                 class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center text-amber-900 font-semibold shrink-0"
@@ -634,7 +679,7 @@
                 <div class="flex items-center justify-between gap-2">
                   <div class="font-semibold text-navy">James Tanaka, RDN</div>
                   <span class="text-xs text-navy-muted shrink-0">
-                    Next: Thu
+                    Next: Sun
                   </span>
                 </div>
                 <div class="text-navy-muted text-sm mt-0.5">
@@ -653,15 +698,10 @@
             </div>
 
             <div class="flex flex-wrap gap-2 mt-4">
-              <button class="slot-pill">Thu 8:00 AM</button>
-              <button class="slot-pill">Thu 11:30 AM</button>
-              <button class="slot-pill">Fri 2:00 PM</button>
-              <button class="slot-pill text-navy-muted show-cash">
-                +1 more
-              </button>
-              <button class="slot-pill text-navy-muted show-wp">
-                +8 more
-              </button>
+              <button class="slot-pill">Sun 9:00 AM</button>
+              <button class="slot-pill">Sun 1:30 PM</button>
+              <button class="slot-pill">Mon 10:00 AM</button>
+              <button class="slot-pill text-navy-muted">+8 more</button>
             </div>
           </article>
 
